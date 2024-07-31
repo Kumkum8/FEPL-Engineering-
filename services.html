@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fepl engineering</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
+        integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <!--navbar start-->
+    <nav class="navbar  text-light navbar-expand-lg sticky-top   ">
+        <div class="container-fluid ">
+            <a class="navbar-brand sticky-top " href="#">
+                <img src="images/fepllogo.png" />
+            </a>
+            <button class="navbar-toggler " style="border:none" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span><img src="images/menu2.jpg" style="width: 45px; height: 22px;" /></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center">
+                    <li class="nav-item dropdown"> <!-- Added 'dropdown' class here -->
+                        <a class="nav-link " href="index.html" id="navbarDropdown" role="button" aria-haspopup="true"
+                            aria-expanded="false">
+                            Home
+                        </a>
+                        <ul class="dropdown-menu " aria-labelledby="navbarDropdown">
+                            <!-- Dropdown links -->
+                            <li><a class="dropdown-item" href="index.html#whoweare">Who we are?</a></li>
+                            <li><a class="dropdown-item" href="index.html#clients">Clients</a></li>
+                            <li><a class="dropdown-item" href="index.html#teams">Teams</a></li>
+                            <li><a class="dropdown-item" href="index.html#projects">Projects</a></li>
+                            <li><a class="dropdown-item" href="index.html#certificates">Certificates</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown"> <!-- Added 'dropdown' class here -->
+                        <a class="nav-link " href="product.html" id="navbarDropdown" role="button" aria-haspopup="true"
+                            aria-expanded="false">
+                            products
+                        </a>
+                        <ul class="dropdown-menu " aria-labelledby="navbarDropdown">
+                            <!-- Dropdown links -->
+                            <li><a class="dropdown-item" href="product.html#oilmistlubricationsystem">Oil Mist
+                                    Lubrication
+                                    System</a></li>
+                            <li><a class="dropdown-item" href="product.html#oilmistlubricationsystemaccessories">Oil
+                                    Mist
+                                    Lubrication
+                                    System's accessories</a></li>
+                            <li><a class="dropdown-item" href="product.html#blazeflowoilpursystem">Blaze Flow Oil
+                                    Purification
+                                    Systems</a></li>
+                            <li><a class="dropdown-item" href="product.html#customizedproducts">Customized Products</a>
+                            </li>
+
+                            <li><a class="dropdown-item" href="product.html#additionalproducts">Additional Products</a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown"> <!-- Added 'dropdown' class here -->
+                        <a class="nav-link " href="services.html" id="navbarDropdown" role="button" aria-haspopup="true"
+                            aria-expanded="false">
+                            services
+                        </a>
+                        <ul class="dropdown-menu " aria-labelledby="navbarDropdown">
+                            <!-- Dropdown links -->
+                            <li><a class="dropdown-item" href="services.html#Oilanalysis">Oil Analysis</a></li>
+                            <li><a class="dropdown-item" href="services.html#lubricantmaintenance"> Lubricant
+                                    Maintenance</a></li>
+                            <li><a class="dropdown-item" href="services.html#lubricantmanagement"> Lubrication
+                                    Management</a></li>
+                            <li><a class="dropdown-item" href="services.html#trainingprograms"> Training Programs</a>
+                            </li>
+                            <li><a class="dropdown-item" href="services.html#fieldassistant"> Field Assistance </a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown"> <!-- Added 'dropdown' class here -->
+                        <a class="nav-link " href="contact.html" aria-haspopup="true" aria-expanded="false">
+                            contact
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item dropdown"> <!-- Added 'dropdown' class here -->
+                        <a class="nav-link " href="blog.html" aria-haspopup="true" aria-expanded="false">
+                            blog
+                        </a>
+
+                    </li>
+
+                </ul>
+                <div>
+
+                    <form class="d-flex" role="search">
+                        <input class="form-control custom-search" type="search" placeholder="Search"
+                            aria-label="Search">
+                        <button class="btn btn-outline-primary custom-search" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!--navbar ends-->
+    <!--navbar ends-->
+
+
+    <!--hero section-->
+    <div class="container-fluid" style="position:relative">
+        <img src="images/servicesbg.jpg" class="d-block w-100" alt="...">
+        <div class=" d-none d-md-block text-center py-auto" style="position : absolute; top:100px; left:70px">
+            <h1 class="display-1 " style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;">
+
+                <a href="#" class="typewrite display-1 fw-bold pb-5 " data-period="2000"
+                    data-type='[ " SERVICES" ]'></a>
+
+            </h1>
+
+        </div>
+    </div>
+
+
+
+
+    <!--hero section ends-->
+
+
+    <div class="container py-3">
+        <h1 class="text-center display-1 " style="font-size: 2.2em;">Our Services</h1>
+        <h5 class="fw-light" style="font-weight: light;line-height: 30px; font-size: 18px;">FEPL can put its extensive
+            experience in operations and maintenance to work for you. FEPL provides
+            lubrication services to meet every requirement from oil analysis to lubrication management audits to FEPL
+            managing part or whole of your lubrications requirements</h5>
+
+    </div>
+
+
+    <!--services section-->
+    <div class="container-fluid " id="Oilanalysis"
+        style="padding-top:80px;overflow-x:hidden ; font-size: 16px;line-height: 30px;">
+        <h1 class="text-center bg-success text-light " style="font-size: 2em;"> OIL ANALYSIS</h1>
+        <div class="row py-4 ">
+            <div class="col-md-12 col-sm-12 col-lg-5 servicesimg " data-aos="fade-down-right" data-aos-delay="800">
+                <img src="images/services1.jpg" />
+
+            </div>
+            <div class="col-md-12 col-sm-12 col-lg-7 " style="font-size: 18px;" data-aos="fade-down-left"
+                data-aos-delay="800">
+                <p> Lubricants are the life‐blood of your rotating equipment. In order to keep your equipment running
+                    reliably and in peak operating condition, you need to make sure lubricants are in good condition and
+                    meet OEM specifications.<br>
+
+                    FEPL’s lubrication technicians will come to your facility and discuss the conditions of the
+                    machinery
+                    and the lubricants used.
+
+                    <br>
+                </p>
+
+
+                <a href="oilanalysis.html" class="read-more my-3 d-inline-block text-center"
+                    style="display: inline-block; text-align: center; text-decoration: none; background-color: #00adf0; color: white; padding: 10px 20px; border-radius: 5px;">Read
+                    More</a>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid py-5" id="lubricantmaintenance">
+        <h1 class="text-center bg-success text-light" style="font-size: 2em;">ON SITE LUBRICANT MAINTENANCE</h1>
+        <div class="row py-4 ">
+
+            <div class="col-md-12 col-sm-12 col-lg-7   order-lg-1 order-2 order-md-1 " style="font-size: 18px;"
+                data-aos="fade-down-right" data-aos-delay="1000">
+                <p> The best preventative care for any rotating equipment is excellent lubrication
+                    management. FEPL
+                    lubrication technicians can provide you on‐site expert service that you can rely on every time.<br>
+                    <br>
+                    Services
+                    FEPL can provide any combination of the following services :
+
+                    <br>
+                    -Lubricant Procurement ,<br>-Routine Lubrication Maintenance,<br> -Oil Analysis,<br>-Contaminant
+                    Investigation ,<br>-Oil Purification
+                    <br><br>
+                    <a href="onsite.html" class="read-more my-3 d-inline-block text-center"
+                        style="display: inline-block; text-align: center; text-decoration: none; background-color: #00adf0; color: white; padding: 10px 20px; border-radius: 5px;">Read
+                        More</a>
+
+                </p>
+            </div>
+            <div class="col-md-12 col-sm-12 col-lg-5 servicesimg order-lg-2 order-1 order-md-2"
+                data-aos="fade-down-left" data-aos-delay="1000">
+                <img src="images/services2.jpg" />
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid" id="lubricantmanagement" style="padding-top:80px">
+        <h1 class="text-center bg-success text-light" style="font-size: 2em;">LUBRICATION MANAGEMENT AUDIT</h1>
+        <div class="row py-4 ">
+            <div class="col-md-12 col-sm-12 col-lg-5 servicesimg order-lg-1 order-1 order-md-1"
+                data-aos="fade-down-right" data-aos-delay="800">
+                <img src="images/services3.jpg" />
+
+            </div>
+            <div class="col-md-12 col-sm-12 col-lg-7  order-lg-2 order-2 order-md-2" data-aos="fade-down-left"
+                style="font-size: 18px;" data-aos-delay="800">
+                <p class="px-4"> For companies that are looking to overhaul their lubrication management procedures, or
+                    simply
+                    looking to increase their performance, FEPL can provide you an independent audit that will help you
+                    improve the performance of your facility.<br>
+
+                    <b>Step 1 – Identify Areas for Evaluation</b><br>
+                    <b>Step 2 – Audit Execution</b><br>
+                    <b>Step 3 – Report and Roadmap</b>
+
+                </p>
+                <a href="lubricationmanagaudit.html" class="read-more my-3 d-inline-block text-center mx-4"
+                    style="display: inline-block; text-align: center; text-decoration: none; background-color: #00adf0; color: white; padding: 10px 20px; border-radius: 5px;">Read
+                    More</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid" id="lubricantmanagement" style="padding-top:80px">
+        <h1 class="text-center bg-success text-light" style="font-size: 2em;">COMPREHENSIVE LUBRICATION MANAGEMENT</h1>
+        <div class="row py-4 ">
+
+            <div class="col-md-12 col-sm-12 col-lg-7 order-lg-1 order-2 order-md-1  " data-aos="fade-down-right"
+                data-aos-delay="1000" style="font-size: 18px;">
+                <p class="px-4"> If you are a small organization or simply want to focus on your core areas of
+                    expertise, FEPL can
+                    take care all of your lubrication requirements.
+
+                    Initially, we will perform a full Lubrication Management Audit so that we have a full understanding
+                    of your systems and a baseline from which our performance can be evaluated going forward.<br><br>
+
+                </p>
+                <a href="lubricationmanagaudit.html" class="read-more my-3 d-inline-block text-center mx-4"
+                    style="display: inline-block; text-align: center; text-decoration: none; background-color: #00adf0; color: white; padding: 10px 20px; border-radius: 5px;">Read
+                    More</a>
+            </div>
+            <div class="col-md-12 col-sm-12 col-lg-5 servicesimg order-lg-2 order-1 order-md-2"
+                data-aos="fade-down-left" data-aos-delay="1000">
+                <img src="images/services4.jpg" />
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid" id="trainingprograms" style="padding-top:80px">
+        <h1 class="text-center bg-success text-light" style="font-size: 2em;">TRAINING AND TRAINING PROGRAMS</h1>
+        <div class="row py-4 ">
+            <div class="col-md-12 col-sm-12 col-lg-5 servicesimg " data-aos="fade-down-right" data-aos-delay="800">
+                <img src="images/services5.jpg" />
+
+            </div>
+            <div class="col-md-12 col-sm-12 col-lg-7 order-lg-1 order-2 order-md-1 " data-aos="fade-down-left"
+                data-aos-delay="800" style="font-size: 18px;">
+                <p> It doesn’t matter how good your equipment is or how thorough your policies and procedures. If your
+                    personnel don’t have the right training, the end results will be poor. FEPL understands this and is
+                    here to provide your team the necessary knowledge and skills to keep your equipment working at peak
+                    performance.
+                    <br>
+
+                    <a href="training.html" class="read-more my-3 d-inline-block text-center mx-4"
+                        style="display: inline-block; text-align: center; text-decoration: none; background-color: #00adf0; color: white; padding: 10px 20px; border-radius: 5px;">Read
+                        More</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" id="fieldassistant" style="padding-top:80px">
+        <h1 class="text-center bg-success text-light" style="font-size: 2em;">24 HOUR FIELD ASSISTANCE</h1>
+        <div class="row py-4">
+
+            <div class="col-md-12 col-sm-12 col-lg-7 order-lg-1 order-2 order-md-1  " data-aos="fade-down-right"
+                data-aos-delay="1000" style="font-size: 18px;">
+                <p> Day or night, it’s never good when a system exceeds normal operating range, or worse, shuts down.
+                    <br><br>
+                    FEPL is always available to consult on any issue regarding a lubrication system whether it was set
+                    up by FEPL or not.
+                    <br><br>
+                    If the site is not located near one of our offices, the team will begin to trouble shoot the problem
+                    while our field staff take the first flight to get to your location.
+                </p>
+            </div>
+            <div class="col-md-12 col-sm-12 col-lg-5 servicesimg order-lg-2 order-1 order-md-2"
+                data-aos="fade-down-left" data-aos-delay="1000">
+                <img src="images/services6.jpg" />
+
+            </div>
+        </div>
+    </div>
+
+    <!--services -->
+
+
+
+
+
+    <!--footer start-->
+    <div class="container-fluid justify-content-around bg-dark ">
+        <div class="row has-bg-img col-lg-12 col-md-12 col-sm-12 bg-image img-responsive" id="footer"
+            style="background-image: url('images/footer-bg.jpg');background-size: cover; ">
+
+
+            <div class="col-lg-3 col-md-6 col-sm-6 py-5  text-white">
+                <div>
+                    <h4>FEPL Engineering Pvt Ltd</h4>
+                </div>
+                <div>
+                    <p>FEPL was established in 1999 to bring innovative new technologies to the petrochemical sector in
+                        India. FEPL was the first company to provide oil mist lubrications systems to the Indian market.
+                    </p>
+                </div><br><br><br>
+
+                <div class="container">
+                    <h4>Follow us on :</h4>
+                    <a href="https://www.linkedin.com/company/fepl-eng-private-limited/" class="icon-anchoe"><i
+                            class="fa-brands fa-linkedin fa-fade fa-2xl" style="padding-right: 15px;"></i></a>
+                    <a href="https://www.facebook.com/pages/Fepl-Engineering-Pvt-Ltd/171786840222690"
+                        class="icon-anchoe"><i class="fa-brands fa-facebook-f fa-fade fa-2xl"
+                            style="padding-right: 15px;"></i></a>
+                    <a href="https://www.instagram.com/feplenggpvtltd/" class="icon-anchoe"><i
+                            class="fa-brands fa-instagram fa-fade fa-2xl" style="padding-right: 15px;"></i></a>
+                </div>
+
+
+
+
+
+            </div>
+
+            <div class="col-lg-2 col-md-6 col-sm-6 py-5 text-white d-block d-inline-block">
+
+                <div class="d-block">
+                    <ul class="d-block">
+                        <h4>Explore Us</h4>
+                        <li><a href="#"> FEPL Engineering</a></li>
+                        <li><a href="https://fepl.shop/"> FEPL Shop</a></li>
+                        <li> <a href="https://education.fepl.shop/">FEPL Education</a></li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-6 py-5 text-white ">
+
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d37845.12754775614!2d73.04206702035717!3d18.987837141339117!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e0!4m5!1s0x3be7c3ac5749cdb1%3A0x9e92daf325e03d1c!2sFepl%20Engineering%20(P)%20Ltd.%2C%20Sakaram%20Patil%20Marg%2C%20Shahbaz%20Village%2C%20Sector%2011%2C%20CBD%20Belapur%2C%20Navi%20Mumbai%2C%20Maharashtra!3m2!1d19.0161826!2d73.0372994!4m3!3m2!1d18.985704899999998!2d73.0386508!5e1!3m2!1sen!2sin!4v1721469357105!5m2!1sen!2sin"
+                    width="340" height="350" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+
+
+            <div class="col-lg-3 col-md-6 col-sm-6 py-5 text-white">
+
+                <div class="last">
+                    <ul>
+                        <h4>Have a Questions?</h4>
+                        <li> <i class="fa-solid fa-location-dot" style="color:white"></i>
+                            513 - Raheja Arcade, Near Sakal Bhavan, Sakaram Patil Marg, Sector 11, CBD Belapur, Navi
+                            Mumbai, Maharashtra 400614
+                        </li>
+                        <li><i class="fa-solid fa-phone" style="color:white"></i> 022 4156 0990
+                        </li>
+                        <li><i class="fa-solid fa-envelope" style="color:white;"></i><a href="mailto:sales@feplengg.co.in
+                    ">sales@feplengg.co.in</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="container-fluid">
+                <p style="color:white;text-align:center;background: rgb(25, 22, 22);padding:10px">Copyright ©2024 All
+                    rights reserved </p>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!--footer end-->
+
+
+
+    <script>
+        AOS.init();
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

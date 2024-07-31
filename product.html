@@ -1,0 +1,1225 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fepl engineering</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
+    integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://scripts.sirv.com/sirvjs/v3/sirv.js"></script>
+  <script src="script.js" defer></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+  <style>
+    .like-icon {
+        font-size: 24px;
+        color: gray;
+        cursor: pointer;
+        margin-right: 8px;
+    }
+    .like-icon.liked {
+        color: red;
+    }
+</style>
+<  <script>
+  $(document).ready(function() {
+      $(".like-icon").click(function() {
+          var $icon = $(this);
+          var productId = $icon.data("product-id");
+          var userName = prompt("Please enter your name:");
+          if (userName) {
+              $.ajax({
+                  url: 'like_product.php',
+                  type: 'POST',
+                  data: { product_id: productId, user_name: userName },
+                  success: function(response) {
+                      // Update the like count
+                      var likeCount = $icon.siblings(".like-count");
+                      var currentCount = parseInt(likeCount.text());
+                      likeCount.text(currentCount + 1);
+
+                      // Toggle the icon color
+                      $icon.toggleClass("liked");
+
+                      // Show response message
+                      alert(response);
+                  },
+                  error: function() {
+                      alert("There was an error processing your request.");
+                  }
+              });
+          }
+      });
+
+      // Load initial like counts
+      $(".like-count").each(function() {
+          var $count = $(this);
+          var productId = $count.attr("id").split("-")[2];
+          $.ajax({
+              url: 'get_like_count.php',
+              type: 'GET',
+              data: { product_id: productId },
+              success: function(response) {
+                  $count.text(response);
+              },
+              error: function() {
+                  $count.text("Error");
+              }
+          });
+      });
+  });
+</script>
+
+  <!--navbar start-->
+  <nav class="navbar  text-light navbar-expand-lg sticky-top   ">
+    <div class="container-fluid ">
+      <a class="navbar-brand sticky-top " href="#">
+        <img src="images/fepllogo.png" />
+      </a>
+      <button class="navbar-toggler " style="border:none" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span><img src="images/menu2.jpg" style="width: 45px; height: 22px;" /></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center">
+          <li class="nav-item dropdown"> <!-- Added 'dropdown' class here -->
+            <a class="nav-link " href="index.html" id="navbarDropdown" role="button" aria-haspopup="true"
+              aria-expanded="false">
+              Home
+            </a>
+            <ul class="dropdown-menu " aria-labelledby="navbarDropdown">
+              <!-- Dropdown links -->
+              <li><a class="dropdown-item" href="index.html#whoweare">Who we are?</a></li>
+              <li><a class="dropdown-item" href="index.html#clients">Clients</a></li>
+              <li><a class="dropdown-item" href="index.html#teams">Teams</a></li>
+              <li><a class="dropdown-item" href="index.html#projects">Projects</a></li>
+              <li><a class="dropdown-item" href="index.html#certificates">Certificates</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown"> <!-- Added 'dropdown' class here -->
+            <a class="nav-link " href="product.html" id="navbarDropdown" role="button" aria-haspopup="true"
+              aria-expanded="false">
+              products
+            </a>
+            <ul class="dropdown-menu " aria-labelledby="navbarDropdown">
+              <!-- Dropdown links -->
+              <li><a class="dropdown-item" href="product.html#oilmistlubricationsystem">Oil Mist Lubrication
+                  System</a></li>
+              <li><a class="dropdown-item" href="product.html#oilmistlubricationsystemaccessories">Oil Mist
+                  Lubrication
+                  System's accessories</a></li>
+              <li><a class="dropdown-item" href="product.html#blazeflowoilpursystem">Blaze Flow Oil Purification
+                  Systems</a></li>
+              <li><a class="dropdown-item" href="product.html#customizedproducts">Customized Products</a></li>
+
+              <li><a class="dropdown-item" href="product.html#additionalproducts">Additional Products</a></li>
+
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown"> <!-- Added 'dropdown' class here -->
+            <a class="nav-link " href="services.html" id="navbarDropdown" role="button" aria-haspopup="true"
+              aria-expanded="false">
+              services
+            </a>
+            <ul class="dropdown-menu " aria-labelledby="navbarDropdown">
+              <!-- Dropdown links -->
+              <li><a class="dropdown-item" href="services.html#Oilanalysis">Oil Analysis</a></li>
+              <li><a class="dropdown-item" href="services.html#lubricantmaintenance"> Lubricant Maintenance</a></li>
+              <li><a class="dropdown-item" href="services.html#lubricantmanagement"> Lubrication Management</a></li>
+              <li><a class="dropdown-item" href="services.html#trainingprograms"> Training Programs</a></li>
+              <li><a class="dropdown-item" href="services.html#fieldassistant"> Field Assistance </a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown"> <!-- Added 'dropdown' class here -->
+            <a class="nav-link " href="contact.html" aria-haspopup="true" aria-expanded="false">
+              contact
+            </a>
+
+          </li>
+
+          <li class="nav-item dropdown"> <!-- Added 'dropdown' class here -->
+            <a class="nav-link " href="blog.html" aria-haspopup="true" aria-expanded="false">
+              blog
+            </a>
+
+          </li>
+
+        </ul>
+        <div>
+
+          <form class="d-flex" role="search">
+            <input class="form-control custom-search" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-primary custom-search" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!--navbar ends-->
+
+  <!--hero section-->
+  <!--<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" data-aos="zoom-out">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+        aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+        aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="images/oillubrication.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h1 class="display-1">Fepl Engineering</h1>
+          <p>Some representative placeholder content for the first slide.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="images/mainimage2.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h1 class="display-1">Fepl Engineering</h1>
+          <p>Some representative placeholder content for the second slide.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="images/mainimage.png" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h1 class="display-1">Fepl Engineering</h1>
+          <p>Some representative placeholder content for the third slide.</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+        -->
+
+  <div class="container-fluid" style="position:relative">
+    <img src="images/pixelcut-export.jpeg" class="d-block w-100" alt="...">
+    <div class=" d-none d-md-block text-center py-auto" style="position : absolute; top:100px; left:70px">
+      <h1 class="display-1 " style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;">
+        <a href="#" class="typewrite fw-bold" data-period="2000" data-type='[ " PRODUCTS" ]'></a>
+      </h1>
+
+    </div>
+  </div>
+  <!--hero section ends-->
+
+
+  <!--product section start-->
+  <!--oil mist accessories-->
+  <div class="container-fluid fw-bold " style="background-image: url(images/productbg.jpg); background-size: cover; 
+        background-attachment: fixed; font-size: 17px;  ">
+    <h1 class="text-center  px-0 display-4" style="background:black; color:white;" id="oilmistlubricationsystem">OIL
+      MIST LUBRICATION SYSTEM</h1>
+    <div class="container-fluid bg-light " style=" opacity: 0.91">
+
+      <h3 class=" text-center fw-bold">FEPL FMC Series Oil Mist Lubrication System Features : </h3>
+
+      <p class=" fw-light"> Efficient Mist Generation: Utilizes a clog-free vortex mist head for consistent oil mist
+        production.
+
+        Low Maintenance: Minimal upkeep required due to robust design and durable stainless steel construction.
+
+        Safety Certified: Approved for Class 1 Group B/C/D Div 2 or Option Div 1 hazardous locations.
+
+        Optimal Control: Monitors and regulates all mist generation variables for reliable performance.
+
+        Electrical Efficiency: Uses power only for controls, not for the production of oil mist.
+    </div>
+
+
+    <div class="row justify-content-around ">
+
+      <div class="card mb-3 px-2 mx-2 col-lg-6 col-md-12 col-sm-12" style="max-width: 740px; opacity: 0.91">
+        <div class="row g-0 " data-aos="zoom-out-down" id="product-1">
+          <div class="col-md-4" >
+            <img src="images/fmc 750.jpg" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h3 class="card-title fw-bold">FMC 750 </h3>
+              <h5 class="card-text ">Function/Description</h5>
+              <p class="fw-light">
+                - Main and standby mist generators with individual reservoirs of 33 liters<br>
+                - Oil mist density sensor<br>
+                - Automatic/remote operated air pressure regulator<br>
+                - 300 liter bulk tank, Internal bulk tank receives oil mist in- order to prevent oil oxidation<br>
+                - Monitors and controls all mist generating variables
+                Air temp control insures precise control of mist density </p>
+
+
+              <h5 class="card-text ">MOC</h5>
+              <p class="fw-light"> • SS 304 <br>
+                • Optional 316/316L
+              </p>
+
+              <div class="container "> To buy this, contact us on:
+                <a href="https://wa.me/9892210905" target="_blank" rel="noopener noreferrer">
+                  <i class="fa-brands fa-square-whatsapp" style="color: #25d366;font-size: 40px;padding-top: 5px;"></i>
+                </a>or
+                <a href="mailto: sales@feplengg.co.in" target="_blank" rel="noopener noreferrer">
+                  <i class="fa-solid fa-envelope" style="color: #db443b;font-size: 40px;"></i>
+
+                <i class="fa fa-heart like-icon" data-product-id="1"></i>
+                  <span class="like-count" id="like-count-1">0</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <div class="card mb-3  mx-2 col-lg-6 col-md-12 col-sm-12 " style="max-width: 740px; opacity: 0.91">
+        <div class="row g-0" data-aos="zoom-out-down">
+          <div class="col-md-4">
+            <img src="images/fmc1.png" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h3 class="card-title fw-bold ">FMC 1</h3>
+              <h5 class="card-text  ">Function/Description</h5>
+              <p class="fw-light">
+                - Lubricates up to five application points<br>
+                - Only utility required is dry compressed air - no electricity<br>
+                - Equipped with -
+                Air regulator,
+                Mist pressure gauge &
+                Return pressure gauge <br>
+                - Level sight glass</p>
+              <br>
+
+              <h5 class="card-text ">MOC</h5>
+              <p class="fw-light"> • SS 304 <br>
+                • Optional 316/316L</p> <br>
+
+              <div class="container "> To buy this, contact us on:
+                <a href="https://wa.me/9892210905" target="_blank" rel="noopener noreferrer">
+                  <i class="fa-brands fa-square-whatsapp" style="color: #25d366;font-size: 40px;padding-top: 5px;"></i>
+                </a>or
+                <a href="mailto: sales@feplengg.co.in" target="_blank" rel="noopener noreferrer">
+                  <i class="fa-solid fa-envelope" style="color: #db443b;font-size: 40px;"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="row justify-content-around  ">
+      <div class="card mb-3  mx-2 col-lg-6 col-md-12 col-sm-12 " style="max-width: 740px; opacity: 0.91">
+        <div class="row g-0" data-aos="zoom-out-down">
+          <div class="col-md-4">
+            <img src="images/fmc500.jpg" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h3 class="card-title fw-bold ">FMC 500</h3>
+              <h5 class="card-text">Function/Description</h5>
+              <p class="fw-light"> - Fully enclosed pedestal mounted<br>
+                - 36 - Litres SS reservoir with pressure- relief valve, oil level sight gauge and clean-out panel<br>
+                - Thermostatically controlled immersion oil heater and reservoir-mounted oil temperature gauges<br>
+                - High/low mist pressure transducer and mist pressure gauge </p>
+
+
+
+              <h5 class="card-text ">MOC</h5>
+              <p class="fw-light">• SS 304 <br>
+                • Optional 316/316L </p><br>
+              <div class="container "> To buy this, contact us on:
+                <a href="https://wa.me/9892210905" target="_blank" rel="noopener noreferrer">
+                  <i class="fa-brands fa-square-whatsapp" style="color: #25d366;font-size: 40px;padding-top: 5px;"></i>
+                </a>or
+                <a href="mailto: sales@feplengg.co.in" target="_blank" rel="noopener noreferrer">
+                  <i class="fa-solid fa-envelope" style="color: #db443b;font-size: 40px;"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mb-3  mx-2 col-lg-6 col-md-12 col-sm-12 " style="max-width: 740px; opacity: 0.91">
+        <div class="row g-0" data-aos="zoom-out-down">
+          <div class="col-md-4">
+            <img src="images/fmc 10.png" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h3 class="card-title fw-bold ">FMC 10</h3>
+              <h5 class="card-text ">Function/Description</h5>
+              <p class="fw-light">- Three gallon reservoir with pressure valve, oil level sight gauge and low level
+                switch.<br>
+                - Thermostatically controlled immersion oil heater and reservoir mounted oil temperature gauge.<br>
+                - Low oil level switch<br>
+                - Air pressure regulator with gauge and auto drain air filter </p>
+
+              <h5 class="card-text  ">MOC</h5>
+              <p class="fw-light">• SS 304 <br>
+                • Optional 316/316L </p><br>
+              <div class="container "> To buy this, contact us on:
+                <a href="https://wa.me/9892210905" target="_blank" rel="noopener noreferrer">
+                  <i class="fa-brands fa-square-whatsapp" style="color: #25d366;font-size: 40px;padding-top: 5px;"></i>
+                </a>or
+                <a href="mailto: sales@feplengg.co.in" target="_blank" rel="noopener noreferrer">
+                  <i class="fa-solid fa-envelope" style="color: #db443b;font-size: 40px;"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div>
+
+      <h1 class="text-center display-4 px-0" style="background:black; color:white; align-items: center; "
+        id="oilmistlubricationsystemaccessories">OIL MIST LUBRICATION SYSTEM'S
+        ACCESSORIES</h1>
+      <div class="row justify-content-around   ">
+        <div class="card mb-3  mx-2 col-lg-6 col-md-12 col-sm-12" style="max-width: 740px;opacity: 0.91;">
+          <div class="row g-0" data-aos="zoom-out-down">
+            <div class="col-md-4" style="position: relative;">
+              <img src="images/mistmanifold.jpeg" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h3 class="card-title fw-bold ">Oil Mist Manifold</h3>
+                <h5 class="card-text">Function/Description</h5>
+                <p class="fw-light"> - Divides mist flow from header drop<br>
+                  - Distributes mist to six lube application points<br>
+                  - Allows visual inspection of oil mist and draining of oil<br>
+                  - Equipped with integral drain valve and tubing connection to divert oil to collection container</p>
+                <h5 class="card-text  ">MOC</h5>
+                <p class="fw-light"> • High temperature, sight glass tube<br>
+                  • SS 304 MOC of body and valve<br>
+                  • SS 316, tube fittings</p>
+
+                <div class="container "> To buy this, contact us on:
+                  <a href="https://wa.me/9892210905" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-square-whatsapp"
+                      style="color: #25d366;font-size: 40px;padding-top: 5px;"></i>
+                  </a>or
+                  <a href="mailto: sales@feplengg.co.in" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-envelope" style="color: #db443b;font-size: 40px;"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-3 mx-2 col-lg-6 col-md-12 col-sm-12" style="max-width: 740px;opacity:0.91">
+          <div class="row g-0" data-aos="zoom-out-down">
+            <div class="col-md-4" style="position: relative;">
+              <img src="images/purgemist.png" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8 d-flex flex-column">
+              <div class="card-body">
+                <h3 class="card-title fw-bold">Purge Mist Vent Fill Assembly</h3>
+                <h5 class="card-text  ">Function/Description</h5>
+                <p class="fw-light"> - For use with application of purge mist/wet sump<br>
+                  - Provides venting of mist to the bearing housing<br>
+                  - Provides clog-resistant mist flow into and from the cavity receiving purge mist
+                <h5 class="card-text  ">MOC</h5>
+                <p class="fw-light">• Aluminum body <br>
+                  • SS 316 tube fittings Options<br>
+                  • SS 304 MOC </p>
+                <div class="container mt-5"> To buy this, contact us on:
+                  <a href="https://wa.me/9892210905" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-square-whatsapp"
+                      style="color: #25d366;font-size: 40px;padding-top: 5px;"></i>
+                  </a>or
+                  <a href="mailto: sales@feplengg.co.in" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-envelope" style="color: #db443b;font-size: 40px;"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-around   ">
+        <div class="card mb-3  mx-2 col-lg-6 col-md-12 col-sm-12 " style="max-width: 740px; opacity: 0.91">
+          <div class="row g-0" data-aos="zoom-out-down">
+            <div class="col-md-4">
+              <img src="images/constantleveloiler.png" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h3 class="card-title fw-bold ">Constant Level Oiler</h3>
+                <h5 class="card-text  ">Function/Description</h5>
+                <p class="fw-light"> - Maintains oil level inside bearing housing
+                  5oz. capacity oil reservoir with fill cap<br>
+                  - Equipped with viewing chamber to set and check oil level in bearing housing <br>
+                  - Ensures no pressure build-up in bearing housing<br>
+                  - Compatible with Oil Mist Lubrication purge mist vent/fill assembly and connection to oil collection
+                  containers
+                <h5 class="card-text  ">MOC</h5>
+                <p class="fw-light"> • Aluminum body <br>
+                  • High temperature sight glass tube<br>
+                  • SS 316 tube fittings</p>
+                <div class="container"> To buy this, contact us on:
+                  <a href="https://wa.me/9892210905" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-square-whatsapp"
+                      style="color: #25d366;font-size: 40px;padding-top: 5px;"></i>
+                  </a>or
+                  <a href="mailto: sales@feplengg.co.in" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-envelope" style="color: #db443b;font-size: 40px;"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-3 px-2 mx-2 col-lg-6 col-md-12 col-sm-12" style="max-width: 740px;opacity: 0.91">
+          <div class="row g-0" data-aos="zoom-out-down">
+            <div class="col-md-4">
+              <img src="images/ventcollection.png" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h3 class="card-title fw-bold">Vent Collection Assembly</h3>
+                <h5 class="card-text ">Function/Description</h5>
+                <p class="fw-light"> - Easily attaches to low point of bearing housing<br>
+                  - For use with pure mist/dry sump. For purge
+                  mist/wet sump applications<br>
+                  - Allows users to view quality of oil</p>
+                <h5 class="card-text">MOC</h5>
+                <p class="fw-light"> • Acrylic body<br>
+                  • SS 316 fittings</p><br><br>
+                <div class="container mt-5"> To buy this, contact us on:
+                  <a href="https://wa.me/9892210905" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-square-whatsapp"
+                      style="color: #25d366;font-size: 40px;padding-top: 5px;"></i>
+                  </a>or
+                  <a href="mailto: sales@feplengg.co.in" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-envelope" style="color: #db443b;font-size: 40px;"></i>
+                  </a>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="row justify-content-around   ">
+        <div class="card mb-3  mx-2 col-lg-6 col-md-12 col-sm-12" style="max-width: 740px;opacity: 0.91">
+          <div class="row g-0" data-aos="zoom-out-down">
+            <div class="col-md-4">
+              <img src="images/collectioncontainer.png" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h3 class="card-title fw-bold ">Collection Container</h3>
+                <h5 class="card-text ">Function/Description</h5>
+                <p class="fw-light"> - Collects coalesced oil from bearing housing<br>
+                  - Keeps equipment base plates clean
+                  Eliminates oil drain to sewers<br>
+                  - Easily mounted to equipment foundation<br>
+                  -Sized to require once per month servicing</p>
+                <h5 class="card-text ">MOC</h5>
+                <p class="fw-light"> • SS 304<br>
+                  • Hand Pump is part of closed loop oil mist
+                  System</p>
+                <div class="container "> To buy this, contact us on:
+                  <a href="https://wa.me/9892210905" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-square-whatsapp"
+                      style="color: #25d366;font-size: 40px;padding-top: 5px;"></i>
+                  </a>or
+                  <a href="mailto: sales@feplengg.co.in" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-envelope" style="color: #db443b;font-size: 40px;"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-3 px-2 mx-2 col-lg-6 col-md-12 col-sm-12" style="max-width: 740px;opacity: 0.91">
+          <div class="row g-0" data-aos="zoom-out-down">
+            <div class="col-md-4">
+              <img src="images/returnmist.png" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h3 class="card-title fw-bold">Return Mist Manifold</h3>
+                <h5 class="card-text">Function/Description</h5>
+                <p class="fw-light"> - To return the Lube Oil from the collection container to the Return Header
+                  - Part of Closed loop oil mist system
+                  - Easily mounted to return drop</p>
+                <h5 class="card-text">MOC</h5>
+                <p class="fw-light"> • SS 304</p><br>
+                <div class="container mt-5"> To buy this, contact us on:
+                  <a href="https://wa.me/9892210905" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-square-whatsapp"
+                      style="color: #25d366;font-size: 40px;padding-top: 5px;"></i>
+                  </a>or
+                  <a href="mailto: sales@feplengg.co.in" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-envelope" style="color: #db443b;font-size: 40px;"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-around   ">
+        <div class="card mb-3  mx-2 col-lg-6 col-md-12 col-sm-12" style="max-width: 740px;opacity: 0.91">
+          <div class="row g-0" data-aos="zoom-out-down">
+            <div class="col-md-4">
+              <img src="images/mistreclassifiers.png" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h3 class="card-title fw-bold ">Mist Reclassifiers</h3>
+                <h5 class="card-text  ">Function/Description</h5>
+                <p class="fw-light"> - Supplies wet mist to the bearings<br>
+                  - Controls flow of oil mist particles to the bearings<br>
+                  - For use in hydrocarbon processing plants and areas with corrosive ambient conditions</p>
+                <h5 class="card-text ">MOC</h5>
+                <p class="fw-light">• SS 304<br>
+                  • SS 316/316L </p>
+                <div class="container mt-5"> To buy this, contact us on:
+                  <a href="https://wa.me/9892210905" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-square-whatsapp"
+                      style="color: #25d366;font-size: 40px;padding-top: 5px;"></i>
+                  </a>or
+                  <a href="mailto: sales@feplengg.co.in" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-envelope" style="color: #db443b;font-size: 40px;"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-3 px-2 mx-2 col-lg-6 col-md-12 col-sm-12" style="max-width: 740px; opacity: 0.91">
+          <div class="row g-0" data-aos="zoom-out-down">
+            <div class="col-md-4">
+              <img src="images/directinalreclassifiers.png" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h3 class="card-title fw-bold">Directional Reclassifiers</h3>
+                <h5 class="card-text  ">Function/Description</h5>
+                <p class="fw-light"> - Allows oil mist to be directed at bearing races directly for BB pumps<br>
+                  - Ideal for use with heavily loaded thrust bearings</p>
+                <h5 class="card-text  ">MOC</h5>
+                <p class="fw-light">• SS 304<br>
+                  • SS 316/316L </p>
+                <div class="container mt-5"> To buy this, contact us on:
+                  <a href="https://wa.me/9892210905" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-square-whatsapp"
+                      style="color: #25d366;font-size: 40px;padding-top: 5px;"></i>
+                  </a>or
+                  <a href="mailto: sales@feplengg.co.in" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-envelope" style="color: #db443b;font-size: 40px;"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="row justify-content-around   ">
+        <div class="card mb-3  mx-2 col-lg-6 col-md-12 col-sm-12 " style="max-width: 740px; opacity: 0.91">
+          <div class="row g-0" data-aos="zoom-out-down">
+            <div class="col-md-4">
+              <img src="images/oillevelsiteassembly.png" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h3 class="card-title fw-bold ">Oil Level Sight Assembly</h3>
+                <h5 class="card-text  ">Function/Description</h5>
+                <p class="fw-light"> - This assembly is intended for use with the
+                  Purge Mist Vent/Fill Assembly<br>
+                  - Oil level in the equipment receiving purge oil mist is protected against overfilling
+                  from liquid oil addition by coalesced oil mist<br>
+                  - Mounted to the bearing housing and the unique design allows for accommodation of level control over
+                  a
+                  broad range.</p>
+                <h5 class="card-text  ">MOC</h5>
+                <p class="fw-light"> • SS 304<br>
+                  • SS 316/316L </p>
+                <div class="container "> To buy this, contact us on:
+                  <a href="https://wa.me/9892210905" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-square-whatsapp"
+                      style="color: #25d366;font-size: 40px;padding-top: 5px;"></i>
+                  </a>or
+                  <a href="mailto: sales@feplengg.co.in" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-envelope" style="color: #db443b;font-size: 40px;"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-3 px-2 mx-2 col-lg-6 col-md-12 col-sm-12" style="max-width: 740px; opacity: 0.91">
+          <div class="row g-0" data-aos="zoom-out-down">
+            <div class="col-md-4">
+              <img src="images/non-vented.jpg" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h3 class="card-title fw-bold">Constant Level Oiler - Non Vented</h3>
+                <h5 class="card-text  ">Function/Description</h5>
+                <p class="fw-light"> - Maintains oil level inside bearing housing<br>
+                  - 5oz. capacity oil reservoir with fill cap<br>
+                  - Equipped with viewing chamber to set and check oil level in bearing housing<br>
+                  - Ensures no pressure build-up in bearing housing </p>
+                <h5 class="card-text  ">MOC</h5>
+                <p class="fw-light"> • Aluminum body<br>
+                  • High temperature sight glass tube<br>
+                  • SS 316 tube fittings</p>
+                <div class="container mt-3"> To buy this, contact us on:
+                  <a href="https://wa.me/9892210905" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-square-whatsapp"
+                      style="color: #25d366;font-size: 40px;padding-top: 5px;"></i>
+                  </a>or
+                  <a href="mailto: sales@feplengg.co.in" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-envelope" style="color: #db443b;font-size: 40px;"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row justify-content-around   ">
+          <div class="card mb-3 px-2 mx-2 col-lg-6 col-md-12 col-sm-12" style="max-width: 720px; opacity: 0.91">
+            <div class="row g-0" data-aos="zoom-out-down">
+              <div class="col-md-4">
+                <img src="images/drainlegreservior2.jpg" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h3 class="card-title fw-bold">
+                    Drain Leg Reservoir</h3>
+                  <h5 class="card-text ">Function/Description</h5>
+                  <p class="fw-light">-Collects coalesced oil and automatically pumps/pushes oil to return header (can
+                    be used for closed-loop
+                    or one way system)
+                    <br>
+                    - Operated by compressed air (electrical supply not required)<br>
+
+                    - Provides for reuse of coalesced header oil, reducing oil consumption<br>
+
+                    - Fully automated
+                  </p>
+                  <h5 class="card-text  ">MOC</h5>
+                  <p class="fw-light">• T 304 SS reservoir </p> <br>
+                  <div class="container "> To buy this, contact us on:
+                    <a href="https://wa.me/9892210905" target="_blank" rel="noopener noreferrer">
+                      <i class="fa-brands fa-square-whatsapp"
+                        style="color: #25d366;font-size: 40px;padding-top: 5px;"></i>
+                    </a>or
+                    <a href="mailto: sales@feplengg.co.in" target="_blank" rel="noopener noreferrer">
+                      <i class="fa-solid fa-envelope" style="color: #db443b;font-size: 40px;"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card mb-3 px-2 mx-2 col-lg-6 col-md-12 col-sm-12" style="max-width: 720px; opacity: 0.91">
+            <div class="row g-0" data-aos="zoom-out-down">
+              <div class="col-md-4">
+                <img src="images/drainlegmanifold.png" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h3 class="card-title fw-bold">
+                    Drain Leg Manifold</h3>
+                  <h5 class="card-text  ">Function/Description</h5>
+                  <p class="fw-light"> - We offer a full line of quality replacement parts and components for T.F.
+                    Hudgins systems and other
+                    makes of oil mist systems.<br>
+                    - Backed by our technical support and installation services, these accessories
+                    deliver outstanding reliability and value in your applications.<br>
+
+                    - Drain leg manifolds monitor and maintain header pressure while draining coalesced oil into a
+                    collection
+                    container.</p>
+                  <br><br>
+
+                  <div class="container "> To buy this, contact us on:
+                    <a href="https://wa.me/9892210905" target="_blank" rel="noopener noreferrer">
+                      <i class="fa-brands fa-square-whatsapp"
+                        style="color: #25d366;font-size: 40px;padding-top: 5px;"></i>
+                    </a>or
+                    <a href="mailto: sales@feplengg.co.in" target="_blank" rel="noopener noreferrer">
+                      <i class="fa-solid fa-envelope" style="color: #db443b;font-size: 40px;"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div>
+          <div class="container-fluid" style="background:black; color:white" id="blazeflowoilpursystem">
+            <h1 class="text-center display-4  " style="padding-top: 80px;padding-bottom:80px;">BLAZEFLOW OIL PURIFIER
+              SYSTEM
+            </h1>
+          </div>
+          <div class="container-fluid bg-light" style="opacity: 0.91">
+
+            <div class="row container-fluid " style="opacity: 0.91" data-aos="zoom-out-down">
+              <div class="col-lg-6 col-md-12 col-sm-12 py-3">
+                <img src="images/blazeflow.jpg" class="img-fluid rounded-start" />
+
+              </div>
+
+              <div class="col-lg-6 col-md-12 col-sm-12 py-3">
+                <p class="fw-light "> The BlazeFlow oil purifier systems manufactured by FEPL are an advanced, effective
+                  and reliable solution
+                  for removing particulates, water and gases from a wide range of fluids including lubricants, hydraulic
+                  oils and transformer oils. </p>
+                <h3>Advantages of Blaze Flow Oil Purifier System</h3>
+                <ul class="fw-light">
+                  <li>- Removes all three forms of water.</li>
+                  <li>- No waste Oil disposal.</li>
+                  <li>- Flash Point & Viscosity return to Normal.</li>
+                  <li>- Improved Machinery Reliability.</li>
+                  <li>- No Need to retrofit expensive dry gas seals.</li>
+                </ul>
+                <h3>Applications of Blaze Flow Oil Purifier System</h3>
+                <ul class="fw-light">
+                  <li>- Synthetic Oils - Compressor Seal Oil</li>
+                  <li>- Turbine Lube Oil - Transformer Oils</li>
+                  <li>- Hydraulic Oil </li>
+                </ul>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!--customized product section start-->
+        <div class="container-fluid py-4 fw-bold" style="background-image: url(images/productbg.jpg); background-size: cover; 
+         background-attachment: fixed; font-size: 17px;" id="customizedproducts">
+          <h1 class="text-center display-4 " style="background:black; color:white;">Customized Products</h1>
+
+
+
+          <div class="row justify-content-around ">
+            <div class="card mb-3  mx-2 col-lg-6 col-md-12 col-sm-12 " style="max-width: 720px; opacity: 0.91">
+              <div class="row g-0" data-aos="zoom-out-down">
+                <div class="col-md-4">
+                  <img src="images/breatherplugs.png" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h3 class="card-title fw-bold ">Breather Plugs</h3>
+                    <h5 class="card-text">Function/Description</h5>
+                    <p class="fw-light"> - This assembly is intended for use with the Transmission equipments<br>
+                      - Breather allows the transmission to breathe air when vacuum is inside which expands or contracts
+                      due
+                      to
+                      heating and cooling of lubricating oil during equipment running.<br>
+                      - Breather allows the hot air to escape and cool air to enter into the transmission to prevent
+                      overheating
+                      issue. </p>
+
+                    <h5 class="card-text  ">MOC</h5>
+                    <p class="fw-light"> • Aluminium<br>
+                      • 3/4" or 3/8" or 1/2" </p>
+                    <div class="container "> To buy this, contact us on:
+                      <a href="https://wa.me/9892210905" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-square-whatsapp"
+                          style="color: #25d366;font-size: 40px;padding-top: 5px;"></i>
+                      </a>or
+                      <a href="mailto: sales@feplengg.co.in" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-solid fa-envelope" style="color: #db443b;font-size: 40px;"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card mb-3 px-2 mx-2 col-lg-6 col-md-12 col-sm-12" style="max-width: 720px; opacity: 0.91">
+              <div class="row g-0" data-aos="zoom-out-down">
+                <div class="col-md-4">
+                  <img src="images/Ltypelevelgauges.png" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h3 class="card-title fw-bold">L-Type level gauge </h3>
+                    <h5 class="card-text  ">Function/Description</h5>
+                    <p class="fw-light">- This type of level gauges have a threaded connection, and are placed laterally
+                      on the wall of the
+                      tank
+                      that contains the oil. Due to its direct contact with the fluid, it provides a quick indication of
+                      the
+                      level in the tubular sight glass.<br>
+
+                      - The height of the level can be adjusted according to the needs of the process, as well as the
+                      specifications of connections and materials.
+                    </p>
+                    <h5 class="card-text  ">MOC</h5>
+                    <p class="fw-light">• Brass Optional Admiralty Brass<br>
+                      • High temperature glass sight tube with marking</p>
+                    <div class="container "> To buy this, contact us on:
+                      <a href="https://wa.me/9892210905" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-square-whatsapp"
+                          style="color: #25d366;font-size: 40px;padding-top: 5px;"></i>
+                      </a>or
+                      <a href="mailto: sales@feplengg.co.in" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-solid fa-envelope" style="color: #db443b;font-size: 40px;"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row justify-content-around  ">
+            <div class="card mb-3  mx-2 col-lg-6 col-md-12 col-sm-12 " style="max-width: 720px; opacity: 0.91">
+              <div class="row g-0" data-aos="zoom-out-down">
+                <div class="col-md-4">
+                  <img src="images/han.png" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h3 class="card-title fw-bold ">Hand Operated Pump</h3>
+                    <h5 class="card-text  ">Function/Description</h5>
+                    <p class="fw-light">- For use with FMC Series Auto Drain Leg<br>
+                      - Drains collected, coalesced oil into auto drain leg while maintaining header pressure<br>
+                      - Equipped with integral drain valve Material<br>
+                      - SS 304 body<br>
+                      - High temperature glass sight tube</p>
+
+                    <h5 class="card-text">MOC</h5>
+                    <p class="fw-light">• T 316/316L SS body with SS pressure gauge</p>
+                    <div class="container "> To buy this, contact us on:
+                      <a href="https://wa.me/9892210905" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-square-whatsapp"
+                          style="color: #25d366;font-size: 40px;padding-top: 5px;"></i>
+                      </a>or
+                      <a href="mailto: sales@feplengg.co.in" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-solid fa-envelope" style="color: #db443b;font-size: 40px;"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card mb-3  mx-2 col-lg-6 col-md-12 col-sm-12 " style="max-width: 720px; opacity: 0.91">
+              <div class="row g-0" data-aos="zoom-out-down">
+                <div class="col-md-4">
+                  <img src="images/popup.png" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h3 class="card-title fw-bold ">POP UP Valve</h3>
+                    <h5 class="card-text ">Function/Description</h5>
+                    <p class="fw-light"> - An automatic pressure relieving device actuated by the static pressure
+                      upstream of the valve, which
+                      opens in proportion to the increase over the opening pressure.
+                      <br>
+                      - The pressure at the valve inlet where the relieved fluid is first detected before normal
+                      relieving
+                      action takes place
+                      <br>
+                      - The valve inlet pop point pressure at which there is a measurable lift or discharge becomes
+                      continuous
+                      as determined by seeing, hearing or feeling.
+                    </p><br>
+
+
+                    <!--<h5 class="card-text fw-light">MOC</h5>
+                • T 316/316L SS body with SS pressure gauge<br>-->
+                    <div class="container "> To buy this, contact us on:
+                      <a href="https://wa.me/9892210905" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-square-whatsapp"
+                          style="color: #25d366;font-size: 40px;padding-top: 5px;"></i>
+                      </a>or
+                      <a href="mailto: sales@feplengg.co.in" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-solid fa-envelope" style="color: #db443b;font-size: 40px;"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+          <div class="row justify-content-around  ">
+
+
+            <div class="card mb-3  mx-2 col-lg-6 col-md-12 col-sm-12 " style="max-width: 720px; opacity: 0.91">
+              <div class="row g-0" data-aos="zoom-out-down">
+                <div class="col-md-4">
+                  <img src="images/rotaryflow (3).png" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h3 class="card-title fw-bold ">Rotary Flow Indicator</h3>
+                    <h5 class="card-text ">Function/Description</h5>
+
+                    <br>
+                    <p class="fw-light">- The pressure at the valve inlet where the relieved fluid is first detected
+                      before normal relieving
+                      action takes place
+                      <br>
+                      - The valve inlet pop point pressure at which there is a measurable lift or discharge becomes
+                      continuous
+                      as determined by seeing, hearing or feeling.
+                    </p><br>
+
+
+                    <!--<h5 class="card-text fw-light">MOC</h5>
+                • T 316/316L SS body with SS pressure gauge<br>-->
+                    <div class="container "> To buy this, contact us on:
+                      <a href="https://wa.me/9892210905" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-square-whatsapp"
+                          style="color: #25d366;font-size: 40px;padding-top: 5px;"></i>
+                      </a>or
+                      <a href="mailto: sales@feplengg.co.in" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-solid fa-envelope" style="color: #db443b;font-size: 40px;"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+
+
+          <!--additional products section start-->
+
+          <h1 class="text-center display-4 " style="background:black; color:white " id="additionalproducts">
+            Additional
+            Products</h1>
+          <div class="row justify-content-around  " data-aos="zoom-out-down">
+            <div class="card mb-3 mx-2 col-lg-6 col-md-12 col-sm-12 " style="max-width: 720px;opacity: 0.91">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="images/cctvcamera.png" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h3 class="card-title fw-bold ">Closed Circuit TV Camera Systems</h3>
+
+                    <p class="fw-light"> CCTV camera systems are an important facilities management tool in today's
+                      modern industrial
+                      plant.
+                      A properly planned system can provide you a clear picture of your entire facility. All CCTV
+                      cameras
+                      offered
+                      FEPL are designed to work in the harsh conditions of a refinery or petrochemical plant. CCTV
+                      cameras
+                      are housed in explosion proof, all-weather, corrosion resistant SUS 316 stainless steel meeting
+                      IECEx
+                      ExD/IIC/T6/IP67 standards. A CCTV system is only as good as its installation. FEPL will make sure
+                      the
+                      installation is done right and on-time.</p>
+                    <div class="container "> To buy this, contact us on:
+                      <a href="https://wa.me/9892210905" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-square-whatsapp"
+                          style="color: #25d366;font-size: 40px;padding-top: 5px;"></i>
+                      </a>or
+                      <a href="mailto: sales@feplengg.co.in" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-solid fa-envelope" style="color: #db443b;font-size: 40px;"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card mb-3 px-2 mx-2 col-lg-6 col-md-12 col-sm-12" style="max-width: 720px; opacity: 0.91">
+              <div class="row g-0" data-aos="zoom-out-down">
+                <div class="col-md-4">
+                  <img src="images/solarpanel.jpg" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h3 class="card-title fw-bold">Solar Module</h3>
+
+                    <p class="fw-light"> Integrating solar power systems into your facility has become a matter of
+                      common sense in today's
+                      world. Whether it is to offset your current power consumption, build in system redundancies,
+                      comply
+                      with government regulations or if you simply want to "go green," FEPL has the right modular solar
+                      system for you. FEPL offers a full range of systems to meet every need. The panels we use are
+                      IEC/VDE/UL certified. They are also approved by the Ministry of New and Renewable Energy (MNRE)
+                      and
+                      ICRA Limited. . We can do a full evaluation to see what system is best for you. We can then design
+                      and install that system making sure it meets the rigorous standards of your industrial facility.
+                    </p>
+                    <div class="container "> To buy this, contact us on:
+                      <a href="https://wa.me/9892210905" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-square-whatsapp"
+                          style="color: #25d366;font-size: 40px;padding-top: 5px;"></i>
+                      </a>or
+                      <a href="mailto: sales@feplengg.co.in" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-solid fa-envelope" style="color: #db443b;font-size: 40px;"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!--product section ends-->
+
+
+
+      <!--footer start-->
+      <div class="container-fluid justify-content-around bg-dark fw-light">
+        <div class="row has-bg-img col-lg-12 col-md-12 col-sm-12 bg-image img-responsive" id="footer"
+          style="background-image: url('images/footer-bg.jpg');background-size: cover; ">
+
+
+          <div class="col-lg-3 col-md-6 col-sm-6 py-5  text-white">
+            <div>
+              <h4>FEPL Engineering Pvt Ltd</h4>
+            </div>
+            <div>
+              <p>FEPL was established in 1999 to bring innovative new technologies to the petrochemical sector in
+                India. FEPL was the first company to provide oil mist lubrications systems to the Indian market.
+              </p>
+            </div><br><br><br>
+
+            <div class="container">
+              <h4>Follow us on :</h4>
+              <a href="https://www.linkedin.com/company/fepl-eng-private-limited/" class="icon-anchoe"><i
+                  class="fa-brands fa-linkedin fa-fade fa-2xl" style="padding-right: 15px;"></i></a>
+              <a href="https://www.facebook.com/pages/Fepl-Engineering-Pvt-Ltd/171786840222690" class="icon-anchoe"><i
+                  class="fa-brands fa-facebook-f fa-fade fa-2xl" style="padding-right: 15px;"></i></a>
+              <a href="https://www.instagram.com/feplenggpvtltd/" class="icon-anchoe"><i
+                  class="fa-brands fa-instagram fa-fade fa-2xl" style="padding-right: 15px;"></i></a>
+            </div>
+
+
+
+
+
+          </div>
+
+          <div class="col-lg-2 col-md-6 col-sm-6 py-5 text-white d-block d-inline-block">
+
+            <div class="d-block">
+              <ul class="d-block">
+                <h4>Explore Us</h4>
+                <li><a href="#"> FEPL Engineering</a></li>
+                <li><a href="https://fepl.shop/"> FEPL Shop</a></li>
+                <li> <a href="https://education.fepl.shop/">FEPL Education</a></li>
+
+              </ul>
+
+            </div>
+
+          </div>
+
+          <div class="col-lg-4 col-md-6 col-sm-6 py-5 text-white ">
+
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d37845.12754775614!2d73.04206702035717!3d18.987837141339117!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e0!4m5!1s0x3be7c3ac5749cdb1%3A0x9e92daf325e03d1c!2sFepl%20Engineering%20(P)%20Ltd.%2C%20Sakaram%20Patil%20Marg%2C%20Shahbaz%20Village%2C%20Sector%2011%2C%20CBD%20Belapur%2C%20Navi%20Mumbai%2C%20Maharashtra!3m2!1d19.0161826!2d73.0372994!4m3!3m2!1d18.985704899999998!2d73.0386508!5e1!3m2!1sen!2sin!4v1721469357105!5m2!1sen!2sin"
+              width="340" height="350" style="border:0;" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+
+
+
+          <div class="col-lg-3 col-md-6 col-sm-6 py-5 text-white">
+
+            <div class="last">
+              <ul>
+                <h4>Have a Questions?</h4>
+                <li> <i class="fa-solid fa-location-dot" style="color:white"></i>
+                  513 - Raheja Arcade, Near Sakal Bhavan, Sakaram Patil Marg, Sector 11, CBD Belapur, Navi
+                  Mumbai, Maharashtra 400614
+                </li>
+                <li><i class="fa-solid fa-phone" style="color:white"></i> 022 4156 0990
+                </li>
+                <li><i class="fa-solid fa-envelope" style="color:white;"></i><a href="mailto:sales@feplengg.co.in
+                    ">sales@feplengg.co.in</a></li>
+              </ul>
+            </div>
+
+          </div>
+
+          <div class="container-fluid">
+            <p style="color:white;text-align:center;background: rgb(25, 22, 22);padding:10px">Copyright ©2024 All
+              rights reserved</p>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!--footer end-->
+      <!--footer ends here -->
+
+
+
+
+
+      <script>
+        AOS.init();
+      </script>
+      <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
